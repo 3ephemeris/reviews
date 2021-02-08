@@ -104,3 +104,6 @@ dist
 
 #local starge
 .DS_Store
+
+# raw data files
+*.csv
