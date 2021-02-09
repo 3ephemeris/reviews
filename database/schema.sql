@@ -1,12 +1,12 @@
 
-
 DROP DATABASE IF EXISTS reviews;
 CREATE DATABASE reviews;
-\c clothing;
+\c reviews;
 
+DROP TABLE IF EXISTS products CASCADE;
 CREATE TABLE products (
   productId INTEGER PRIMARY KEY,
-  productName VARCHAR ( 255 ) UNIQUE NOT NULL,
+  productName VARCHAR ( 255 ) NOT NULL,
   imgUrl VARCHAR ( 255 ) NOT NULL,
   fit VARCHAR ( 255 ),
   activities VARCHAR ( 255 ),
@@ -14,11 +14,9 @@ CREATE TABLE products (
   ratingCount INTEGER
 );
 
-COPY products (productName, imgUrl, fit, activities, avgRating, ratingCount)
-FROM '/Users/thomas/Documents/HackReactor/sdc/reviews/smallProducts.csv'
-DELIMITER ','
-CSV HEADER;
+\COPY products (productId, productName, imgUrl, fit, activities, avgRating, ratingCount) FROM '/Users/thomas/Documents/HackReactor/sdc/reviews/products.csv' DELIMITER ',' CSV HEADER;
 
+DROP TABLE IF EXISTS reviews;
 CREATE TABLE reviews (
   reviewId BIGSERIAL PRIMARY KEY,
   productId INTEGER,
@@ -39,11 +37,8 @@ CREATE TABLE reviews (
   snowWear BOOLEAN,
   surfing BOOLEAN,
   work BOOLEAN,
-  createdAt TIMESTAMPTZ,
-  FOREIGN KEY(productId) REFERENCES products(productId) ON DELETE CASCADE
+  createdAt TIMESTAMPTZ DEFAULT NOW(),
+  FOREIGN KEY(productId) REFERENCES products(productId)
 );
 
-COPY reviews (productId, rating, recommended, title, author, body, size, fit, height, casualWear, climbing, yoga, fishing, hiking, biking, snowWear, surfing, work)
-FROM '/Users/thomas/Documents/HackReactor/sdc/reviews/smallReviews.csv'
-DELIMITER ','
-CSV HEADER;
+\COPY reviews (productId, rating, recommended, title, author, body, size, fit, height, casualWear, climbing, yoga, fishing, hiking, biking, snowWear, surfing, work) FROM '/Users/thomas/Documents/HackReactor/sdc/reviews/reviews.csv' DELIMITER ',' CSV HEADER;
