@@ -12,7 +12,8 @@
     "watch": "webpack --watch",
     "build": "webpack",
     "test": "jest",
-    "db:setup": "node database/seed.js"
+    "db:setup": "node database/seed.js",
+    "seed": "sudo psql -U postgres -f /Users/thomas/Documents/HackReactor/sdc/reviews/database/schema.sql"
   },
   "dependencies": {
     "ajax": "0.0.4",
@@ -26,6 +27,7 @@
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
     "mongoose": "^5.11.11",
+    "pg": "^8.5.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dev": "0.0.1",

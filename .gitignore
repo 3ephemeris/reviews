@@ -101,3 +101,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+#local starge
+.DS_Store
+
+# raw data files
+*.csv
+
+# user-specific dependencies
+package-lock.json
