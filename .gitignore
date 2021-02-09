@@ -107,3 +107,6 @@ dist
 
 # raw data files
 *.csv
+
+# user-specific dependencies
+package-lock.json
