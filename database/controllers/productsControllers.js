@@ -6,6 +6,8 @@ const getProductInfo = (id, cb) => {
     .catch((error) => cb(error, null));
 };
 
+// complete if time allows:
+
 // const deleteProduct = (id, cb) => {
 // };
 
