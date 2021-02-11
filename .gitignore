@@ -110,3 +110,6 @@ dist
 
 # user-specific dependencies
 package-lock.json
+
+# sensitive newrelic info:
+newrelic.js
