@@ -14,11 +14,13 @@ CREATE TABLE products (
   ratingCount INTEGER
 );
 
-\COPY products (productId, productName, imgUrl, fit, activities, avgRating, ratingCount) FROM '/Users/thomas/Documents/HackReactor/sdc/reviews/products.csv' DELIMITER ',' CSV HEADER;
+\COPY products (productId, productName, imgUrl, fit, activities, avgRating, ratingCount) FROM '/Users/thomas/Documents/HackReactor/sdc/reviews/medProducts.csv' DELIMITER ',' CSV HEADER;
+
+CREATE INDEX productId_idx ON products (productId);
 
 DROP TABLE IF EXISTS reviews;
 CREATE TABLE reviews (
-  reviewId BIGSERIAL PRIMARY KEY,
+  reviewId SERIAL PRIMARY KEY,
   productId INTEGER,
   rating INTEGER,
   recommended BOOLEAN,
@@ -41,4 +43,7 @@ CREATE TABLE reviews (
   FOREIGN KEY(productId) REFERENCES products(productId)
 );
 
-\COPY reviews (productId, rating, recommended, title, author, body, size, fit, height, casualWear, climbing, yoga, fishing, hiking, biking, snowWear, surfing, work) FROM '/Users/thomas/Documents/HackReactor/sdc/reviews/reviews.csv' DELIMITER ',' CSV HEADER;
+\COPY reviews (productId, rating, recommended, title, author, body, size, fit, height, casualWear, climbing, yoga, fishing, hiking, biking, snowWear, surfing, work) FROM '/Users/thomas/Documents/HackReactor/sdc/reviews/medReviews.csv' DELIMITER ',' CSV HEADER;
+
+CREATE INDEX reviewId_idx ON reviews (reviewId);
+CREATE INDEX reviewProduct_idx ON reviews (productId);

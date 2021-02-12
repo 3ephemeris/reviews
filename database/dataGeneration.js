@@ -18,10 +18,10 @@ const getActivitiesString = () => {
   return result.slice(1);
 };
 
-const writeProducts = fs.createWriteStream('smallProducts.csv');
+const writeProducts = fs.createWriteStream('medProducts.csv');
 writeProducts.write('productId,productName,imgUrl,fit,activities,avgRating,ratingCount\n', 'utf8');
 
-const writeReviews = fs.createWriteStream('smallReviews.csv');
+const writeReviews = fs.createWriteStream('medReviews.csv');
 writeReviews.write('productId,rating,recommended,title,author,body,size,fit,height,casualWear,climbing,yoga,fishing,hiking,biking,snowWear,surfing,work\n');
 
 const createNProducts = (writer, n, encoding, cb) => {
@@ -40,8 +40,8 @@ const createNProducts = (writer, n, encoding, cb) => {
       const avgRating = 0;
       const ratingCount = 0;
       const data = `${productId},${productName},${imgUrl},${fit},${activites},${avgRating},${ratingCount}\n`;
-      if (i % 1000000 === 0) {
-        console.log('1000000 more products written!');
+      if (i % (n / 10) === 0) {
+        console.log(`${n / 10} more products written!`);
       }
       if (i === 0) {
         writer.write(data, encoding, cb);
@@ -122,4 +122,4 @@ const createNRecords = (n) => {
   });
 };
 
-createNRecords(10000000);
+createNRecords(1000000);

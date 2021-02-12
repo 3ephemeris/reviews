@@ -68,7 +68,7 @@ app.get('/api/products/:productid', (req, res) => {
 
 // default response matching legacy response shape
 app.get('/productreviews', (req, res) => {
-  const randomId = Math.ceil(Math.random() * 10000000);
+  const randomId = Math.ceil(Math.random() * 1000000);
   reviews.getProductReviews(randomId, (error, response) => {
     if (error) {
       console.log(`error fetching reviews for product #${randomId}`);
