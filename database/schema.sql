@@ -14,7 +14,11 @@ CREATE TABLE products (
   ratingCount INTEGER
 );
 
-\COPY products (productId, productName, imgUrl, fit, activities, avgRating, ratingCount) FROM '/Users/thomas/Documents/HackReactor/sdc/reviews/medProducts.csv' DELIMITER ',' CSV HEADER;
+-- for local:
+-- \COPY products (productId, productName, imgUrl, fit, activities, avgRating, ratingCount) FROM '/Users/thomas/Documents/HackReactor/sdc/reviews/medProducts.csv' DELIMITER ',' CSV HEADER;
+
+-- for aws:
+\COPY products (productId, productName, imgUrl, fit, activities, avgRating, ratingCount) FROM 'medProducts.csv' DELIMITER ',' CSV HEADER;
 
 CREATE INDEX productId_idx ON products (productId);
 
@@ -42,8 +46,11 @@ CREATE TABLE reviews (
   createdAt TIMESTAMPTZ DEFAULT NOW(),
   FOREIGN KEY(productId) REFERENCES products(productId)
 );
+-- for local:
+--\COPY reviews (productId, rating, recommended, title, author, body, size, fit, height, casualWear, climbing, yoga, fishing, hiking, biking, snowWear, surfing, work) FROM '/Users/thomas/Documents/HackReactor/sdc/reviews/medReviews.csv' DELIMITER ',' CSV HEADER;
 
-\COPY reviews (productId, rating, recommended, title, author, body, size, fit, height, casualWear, climbing, yoga, fishing, hiking, biking, snowWear, surfing, work) FROM '/Users/thomas/Documents/HackReactor/sdc/reviews/medReviews.csv' DELIMITER ',' CSV HEADER;
+-- for AWS:
+\COPY reviews (productId, rating, recommended, title, author, body, size, fit, height, casualWear, climbing, yoga, fishing, hiking, biking, snowWear, surfing, work) FROM 'medReviews.csv' DELIMITER ',' CSV HEADER;
 
 CREATE INDEX reviewId_idx ON reviews (reviewId);
 CREATE INDEX reviewProduct_idx ON reviews (productId);
