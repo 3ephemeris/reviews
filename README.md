@@ -1,58 +1,11 @@
 # Project Name
-FJORDS by LibraFX
+Backend overhaul of the Review component on a clothing website - scaled up to handle 150 Million + reviews, with average response times of 64ms under 1000rps loads.  
 
-> HackReactors F.E.C. project conducted by team LibraFX: Alex Klyuev, Alex Yu, Samuel Bjorklund, Zachary Cuch.
-Reacretion of Patagonia's Fjord Flannel Jacket item page featuring the selected item carousel, detailed overview, related items, and customer reviews; handled by ZC, AY, AK, and SB respectively.
-Project designed as a non-functional Full-stack application using Node.JS, React, and a simulated Mongo database.
-
-
-## Related Projects
-
-  - https://github.com/LibraFX/size-carousel
-  - https://github.com/LibraFX/overview
-  - https://github.com/LibraFX/related-items
-  - https://github.com/LibraFX/reviews
 
 ## Table of Contents
 
 1. [API](#api)
-1. [Usage](#usage)
 1. [Requirements](#requirements)
-1. [Development](#development)
-
-
-## Usage
-
-> Some usage instructions
-
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- Express
-- Mongoose
-- React
-- Bluebird
-- Webpack
-- Babel
-- Enzyme/Jest
--
-
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install
-```
-# Reviews
-
-> This module displays saved reviews of clothing products as well as aggregated review info to users, and allows users to write and submit new reviews on existing items.
-
----------
 
 # API
 
@@ -61,9 +14,9 @@ npm install
 
 ## Products
 
-### `GET /api/products/:productName`
+### `GET /api/products/:productId`
 
-  - response body: a **Product Object** containing product info of the product with the *:productName* specified:
+  - response body: a **Product Object** containing product info of the product with the *:productId* specified:
   
     | Key | Value |
     | --- | --- |
@@ -165,3 +118,16 @@ npm install
     | productInfo | <table><tr><td>size</td><td>String</td></tr><tr><td>fit</td><td>String</td></tr><tr><td>height</td><td>String</td></tr></table> |
     | activities | Array \[Strings\] <table><tr><th>Options:</th></tr><tr><td>"Casual-Wear"</td></tr><tr><td>"Climbing"</td></tr><tr><td>"Yoga"</td></tr><tr><td>"Fishing"</td></tr><tr><td>"Hiking"</td></tr><tr><td>"Biking"</td></tr><tr><td>"Snow-Wear"</td></tr><tr><td>"Surfing"</td><tr><tr><td>"Work"</td></tr></table>|
     | createdAt | Date |
+
+## Requirements
+
+An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
+
+- Node 6.13.0
+- Express
+- Mongoose
+- React
+- Bluebird
+- Webpack
+- Babel
+- Enzyme/Jest
